@@ -3,12 +3,45 @@ require './autoloader.php';
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\Shared\Converter;
+use PhpOffice\PhpWord\Style\Font;
+use Picqer\Barcode\BarcodeGeneratorHTML;
 
 include("./backend/database_information.php");
+function encodeToCode128A($input) {
+    // Code128A uses ASCII 0–95 (uppercase, digits, symbols, control chars)
+    // Start Code128A = ASCII 203 (Ì in some fonts)
+    // Stop Code = ASCII 206 (Î in some fonts)
+    // We need: Start Code + Encoded Data + Checksum + Stop Code
+
+    $startCode = chr(203); // Start Code A
+    $stopCode  = chr(206); // Stop Code
+
+    // Calculate checksum
+    // checksum = (startValue + Σ( value(character) * position )) mod 103
+    // startValue for Code128A = 103
+    $checksum = 103;
+    $chars = str_split($input);
+    foreach ($chars as $i => $char) {
+        $ascii = ord($char);
+
+        // For Code128A, only ASCII 0–95 are allowed
+        if ($ascii < 0 || $ascii > 95) {
+            throw new Exception("Character '{$char}' not valid in Code128A");
+        }
+
+        $checksum += ($ascii * ($i + 1));
+    }
+    $checksum = $checksum % 103;
+
+    // Convert checksum into a character (basic mapping)
+    $checksumChar = chr($checksum);
+
+    return $startCode . $input . $checksumChar . $stopCode;
+}
 
 // Fetch students
 $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-$stmt = $pdo->query("SELECT full_name, student_id_number, department FROM students");
+$stmt = $pdo->query("SELECT full_name,address, student_id_number, department FROM students");
 $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $phpWord = new PhpWord();
@@ -74,20 +107,57 @@ foreach ($students as $student) {
 
             // Add text
             if ($cellData) {
-                $cell->addTextBreak(10); // push text down (try adjusting the number)
-
+                $cell->addTextBreak(10); 
+                
                 $cell->addText(
                     $cellData['full_name'],
-                    ['size' => 8, 'name' => 'Arial', 'bold' => true],
+                    [
+                        'size' => 9,
+                        'name' => 'Trebuchet MS',
+                        'bold' => true,
+                        'underline' => Font::UNDERLINE_SINGLE
+                    ],
+                    ['alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER]
+                );
+                $cell->addTextBreak(1); 
+
+                $cell->addText(
+                    $cellData['address'],
+                    [
+                        'size' => 6,
+                        'name' => 'Trebuchet MS',
+                        'underline' => Font::UNDERLINE_SINGLE
+                    ],
                     ['alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER]
                 );
 
-                $cell->addTextBreak(5); // space between lines
+                $cell->addTextBreak(1);
+                $encoded = encodeToCode128A($cellData['student_id_number']);
                 $cell->addText(
-                    $cellData['student_id_number'],
-                    ['size' => 5, 'name' => 'Arial'],
-                    ['alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER, 'lineHeight' => 1.5]
-                );
+                    $encoded,
+                    [
+                        'size' => 16,
+                        'name' => 'Code 128' // make sure this is the actual font name installed
+                    ],
+                    [
+                        'alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER,
+                        'lineHeight' => 1.0
+                        ]
+                    );
+                    $cell->addText(
+                        $cellData['student_id_number'],
+                        [
+                            'size' => 5,
+                            'name' => 'Trebuchet MS' // make sure this is the actual font name installed
+                        ],
+                    [
+                        'alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER,
+                        'lineHeight' => 1.0
+                        ]
+                    );
+                    
+                    $cell->addTextBreak(1);
+
                 
 
                 $cell->addText(
@@ -95,8 +165,8 @@ foreach ($students as $student) {
                 [
                     'size' => 6.5,
                     'name' => 'Calibri',
-                    'bold' => true,          // make text bold
-                    'color' => 'FFFFFF'      // white color in hex
+                    'bold' => true,        
+                    'color' => 'FFFFFF'  
                 ],
                 [
                     'alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER
@@ -115,9 +185,17 @@ foreach ($students as $student) {
     }
 }
 
-// Save Word document
-$finalFile = './documents/student_cards.docx';
+
+
+header("Content-Description: File Transfer");
+header('Content-Disposition: attachment; filename="student_cards.docx"'); 
+header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+header('Cache-Control: must-revalidate');
+header('Expires: 0');
+
 $writer = IOFactory::createWriter($phpWord, 'Word2007');
-$writer->save($finalFile);
+$writer->save("php://output"); // stream directly instead of saving
+exit;
+
 
 echo "Student cards generated successfully in $finalFile";

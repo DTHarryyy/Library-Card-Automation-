@@ -1,0 +1,127 @@
+#tableSection{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px 0 0 0;
+}  
+.table-container {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  width: 100%;
+  overflow: hidden;
+}
+.table-header {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  padding: 25px 30px;
+  border-radius: 20px 20px 0 0;
+  box-sizing: border-box;
+}
+.table-header h1 {
+  margin: 0 0 6px 0;
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+.table-header p {
+  margin: 0;
+  font-weight: 500;
+  color: #c7d2fe;
+  font-size: 1rem;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  color: #334155;
+}
+thead tr {
+  background-color: #f8fafc;
+  color: #475569;
+  font-weight: 600;
+  border-bottom: 2px solid #e2e8f0;
+}
+th, td {
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+  vertical-align: middle;
+}
+tbody tr:hover {
+  background-color: #f1f5f9;
+  transition: background-color 0.2s ease;
+}
+.student-id {
+  font-family: monospace;
+  color: #3b82f6;
+  font-weight: 600;
+}
+.name-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  background-color: #bfdbfe;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2563eb;
+  font-size: 18px;
+  font-weight: 700;
+  user-select: none;
+}
+.department-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+  background: #7c3aed;
+  user-select: none;
+  white-space: nowrap;
+}
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.action-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+.edit-btn {
+  background-color: #3b82f6;
+}
+.edit-btn:hover {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+}
+.delete-btn {
+  background-color: #ef4444;
+}
+.delete-btn:hover {
+  background-color: #dc2626;
+  transform: translateY(-1px);
+}
+@media (max-width: 768px) {
+  .table-container {
+    overflow-x: auto;
+  }
+  table {
+    min-width: 700px;
+  }
+}

@@ -11,6 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/general.css">
     <link rel="stylesheet" href="./style/header.css">
+    <link rel="stylesheet" href="./style/table.css">
+
     <title>Csua-Library</title>
 </head>
 <body>
@@ -24,11 +26,11 @@
         <div class="btns" style="display: flex;gap:10px;">
             <a href="./studentsForm.php"  class="btnType1 buttons">Add User</a>
            <form action="./generate.php" class="printBtn">
-             <button class="btnType2 buttons">Print</button>
+             <button class="btnType2 buttons" onclick="return confirm('Are you sure you want to download this file? ')">Print</button>
            </form>
         </div>
     </header>
-    <section>
+    <section id="tableSection">
         <?php 
             include('./pages/users.php');
         ?>  
