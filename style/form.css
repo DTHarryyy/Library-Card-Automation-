@@ -1,0 +1,77 @@
+:root{
+    --blue: rgb(100, 100, 240);
+    --gray: rgb(201, 186, 186);
+}
+.light-text{
+    color: var(--gray);
+}
+#formSection{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100dvh;
+}
+#form{
+    border: 1px solid rgb(201, 186, 186);
+    padding: 30px 20px 10px 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+}
+.inputBox{
+    position: relative;
+    margin: 10px 0 ;
+}
+.inputBox > input{
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid rgb(201, 186, 186);
+    width: 100%;
+    outline: none;
+}
+.inputBox > label{
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgb(201, 186, 186);
+}
+.inputBox > input:focus ~ label,
+.inputBox > input:not(:placeholder-shown) ~ label {
+    top: 0;
+    background-color: white;
+    padding: 0 5px;
+    transition: 0.15s ease-in-out;
+}
+
+#form > h2{
+    color: var(--blue);
+    margin: 15px 0;
+}
+#form > .dropDown{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 20px 0;
+    label{
+        color: var(--gray);
+    }
+}
+#form > .dropDown > select{
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: 1px solid var(--gray);
+    border-radius: 5px;
+}
+.submitBtn{
+    width: 100%;
+    padding: 10px 0;
+    background-color: var(--blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+}
+.submitBtn:focus{
+    scale: .99;
+}

@@ -1,0 +1,44 @@
+
+#homeHeader{
+    background-color: black;
+    width: 100%;
+    color: white;
+    height: 450px;
+    display: flex;
+    background-image: url(../assets/images/12301.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    .logo > img{
+        height: 60px;
+    }
+    h1{
+        font-size: 3rem;
+    }
+
+}
+.buttons{
+    padding: 10px 20px;
+    border: none;  
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+.btnType1{
+    background-color: white;
+    color: black;
+}
+.btnType2{
+    background-color: var(--blue);
+    color: white;
+}
+.printBtn{
+    display: inline-block;
+}
