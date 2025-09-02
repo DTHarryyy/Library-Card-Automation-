@@ -32,7 +32,7 @@
     </header>
     <section id="tableSection">
         <?php 
-            include('./pages/users.php');
+            include('./pages/students.php');
         ?>  
     </section>
 </body>

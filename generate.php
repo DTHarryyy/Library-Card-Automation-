@@ -40,7 +40,6 @@ function encodeToCode128A($input) {
 }
 
 // Fetch students
-$pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
 $stmt = $pdo->query("SELECT full_name,address, student_id_number, department FROM students");
 $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
