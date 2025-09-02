@@ -2,10 +2,7 @@
 session_start();
 
 // Database connection
-$host = "localhost";
-$dbname = "librarycardusers"; 
-$username = "root"; 
-$password = ""; 
+include('./backend/database_information.php');
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
