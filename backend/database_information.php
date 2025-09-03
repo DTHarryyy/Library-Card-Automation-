@@ -12,7 +12,7 @@ if ($_SERVER['HTTP_HOST'] == "csua-lib-card-generator.fwh.is") {
 } else {
     // Local
     $host = "localhost";
-    $dbname = "local_library";
+    $dbname = "librarycardusers";
     $username = "root";
     $password = "";
 }

@@ -1,7 +1,12 @@
+<?php 
+  // session_start();
+  include('./backend/database_information.php');
+  include('./backend/fetchstudents.php');
+?>
 <div class="table-container" role="region" aria-label="Student Information Table">
     <header class="table-header">
       <h1>Student Information Management</h1>
-      <p>Manage and view student records with ease</p>
+      <p>Previously Added Students</p>
     </header>
     <table>
       <thead>
@@ -15,24 +20,46 @@
       </thead>
       <tbody>
         
-        <tr>
-          <td class="student-id">STU-2024-003</td>
-          <td>
-            <div class="name-cell">
-              <div class="avatar" aria-hidden="true">M</div>
-              <div>
-                <div><strong>Maria Garcia</strong></div>
-                <div style="font-size: 0.85rem; color: #64748b;">maria.g@email.com</div>
-              </div>
-            </div>
-          </td>
-          <td>789 Pine Road, Austin, TX 78701</td>
-          <td><span class="department-badge" style="background:#f59e0b;">Business</span></td>
-          <td class="actions" style="text-align:center;">
-            <button class="action-btn edit-btn" aria-label="Edit Maria Garcia">Edit</button>
-            <button class="action-btn delete-btn" aria-label="Delete Maria Garcia">Delete</button>
-          </td>
-        </tr>
+        <?php  foreach($students as $student): ?>
+          <tr>
+            <td class="student-id" data-label="Student ID">
+                <?= $student['student_id_number']?>
+              </td>
+
+              <td data-label="Name">
+                <div class="name-cell">
+                  <!-- <div class="avatar" aria-hidden="true">M</div> -->
+                  <div>
+                    <div><strong><?= $student['full_name']?></strong></div>
+                    <!-- Optional email -->
+                    <!-- <div style="font-size: 0.85rem; color: #64748b;">emailMoExample@email.com</div> -->
+                  </div>
+                </div>
+              </td>
+
+              <td data-label="Address">
+                <?= $student['address']?>
+              </td>
+
+              <td data-label="Department">
+                <span class="department-badge" style="background:#f59e0b;">
+                  <?= $student['department']?>
+                </span>
+              </td>
+
+              <td class="actions" data-label="Actions" style="text-align:center;">
+                <button class="action-btn edit-btn" aria-label="Edit <?= $student['full_name']?>">Edit</button>
+                <button 
+                  class="action-btn delete-btn"
+                  aria-label="Delete <?= $student['full_name']?>"
+                  onclick="removeStudent(<?= $student['student_id_number']?>)"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+
+        <?php  endforeach ?>
       </tbody>
     </table>
 </div>

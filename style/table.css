@@ -1,10 +1,11 @@
-#tableSection{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 50px 0 0 0;
+#tableSection {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px 0 0 0;
 }  
+
 .table-container {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 20px;
@@ -13,6 +14,7 @@
   width: 100%;
   overflow: hidden;
 }
+
 .table-header {
   background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
   color: white;
@@ -20,49 +22,60 @@
   border-radius: 20px 20px 0 0;
   box-sizing: border-box;
 }
+
 .table-header h1 {
   margin: 0 0 6px 0;
   font-size: 1.9rem;
   font-weight: 700;
 }
+
 .table-header p {
   margin: 0;
   font-weight: 500;
   color: #c7d2fe;
   font-size: 1rem;
 }
+
 table {
   width: 100%;
   border-collapse: collapse;
   font-size: 1rem;
   color: #334155;
 }
+
 thead tr {
   background-color: #f8fafc;
   color: #475569;
   font-weight: 600;
   border-bottom: 2px solid #e2e8f0;
 }
+
 th, td {
   padding: 16px 20px;
   text-align: left;
   border-bottom: 1px solid #e2e8f0;
   vertical-align: middle;
+  word-break: break-word;
+  white-space: normal;
 }
+
 tbody tr:hover {
   background-color: #f1f5f9;
   transition: background-color 0.2s ease;
 }
+
 .student-id {
   font-family: monospace;
   color: #3b82f6;
   font-weight: 600;
 }
+
 .name-cell {
   display: flex;
   align-items: center;
   gap: 12px;
 }
+
 .avatar {
   width: 40px;
   height: 40px;
@@ -76,6 +89,7 @@ tbody tr:hover {
   font-weight: 700;
   user-select: none;
 }
+
 .department-badge {
   display: inline-block;
   padding: 6px 14px;
@@ -87,11 +101,13 @@ tbody tr:hover {
   user-select: none;
   white-space: nowrap;
 }
+
 .actions {
   display: flex;
   gap: 10px;
   justify-content: center;
 }
+
 .action-btn {
   padding: 8px 14px;
   border-radius: 8px;
@@ -103,25 +119,89 @@ tbody tr:hover {
   transition: all 0.3s ease;
   user-select: none;
 }
+
 .edit-btn {
   background-color: #3b82f6;
 }
+
 .edit-btn:hover {
   background-color: #2563eb;
   transform: translateY(-1px);
 }
+
 .delete-btn {
   background-color: #ef4444;
 }
+
 .delete-btn:hover {
   background-color: #dc2626;
   transform: translateY(-1px);
 }
+
 @media (max-width: 768px) {
   .table-container {
-    overflow-x: auto;
+    overflow-x: hidden;
   }
-  table {
-    min-width: 700px;
+
+  table, .table-header, thead, tbody, th, td, tr {
+    display: block;
+    width: 100%;
+  }
+
+  thead {
+    display: none; /* hide headers */
+  }
+
+  tbody tr {
+    margin-bottom: 15px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    background: #fff;
+  }
+
+  tbody td {
+    display: block;          /* stack instead of flex */
+    padding: 8px 6px;
+    border: none;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.95rem;
+    word-break: break-word;
+  }
+
+  tbody td:last-child {
+    border-bottom: none;
+  }
+
+  tbody td::before {
+    content: attr(data-label);
+    display: block;          /* label on its own line */
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 4px;
+    font-size: 0.85rem;
+    text-transform: capitalize;
+  }
+
+  /* Ensure no overflow */
+  tbody td > * {
+    width: 100%;
+    display: block;
+    overflow-wrap: anywhere;
+  }
+
+  /* Actions look tidy */
+  .actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 6px;
+  }
+
+  .action-btn {
+    flex: 1 1 48%;
+    text-align: center;
   }
 }

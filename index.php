@@ -27,7 +27,7 @@
         </div>
         <h1>Cagayan State University Library</h1>
         <div class="btns" style="display: flex;gap:10px;">
-            <a href="./studentsForm.php"  class="btnType1 buttons">Add User</a>
+            <a href="./studentsForm.php"  class="btnType1 buttons">Add Student</a>
            <form action="./generate.php" class="printBtn">
              <button class="btnType2 buttons" onclick="return confirm('Are you sure you want to download this file? ')">Print</button>
            </form>
@@ -38,5 +38,13 @@
             include('./pages/students.php');
         ?>  
     </section>
+
+    <script>
+        function removeStudent(student_id){
+            return confirm('Are you sure you want to remove this student?')
+
+
+        }
+    </script>
 </body>
 </html>
