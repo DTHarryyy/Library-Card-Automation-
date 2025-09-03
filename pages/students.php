@@ -19,7 +19,9 @@
         </tr>
       </thead>
       <tbody>
-        
+        <?php if(count($students) < 1):?>
+          <td>No users found!</td>
+        <?php endif?>
         <?php  foreach($students as $student): ?>
           <tr>
             <td class="student-id" data-label="Student ID">
