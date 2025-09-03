@@ -23,7 +23,7 @@
         <div class="logo">
            <img src="./assets/images/csulogo.png" alt=""> 
         </div>
-        <h1>Cagayan State University Library</h1>
+        <h1  style="text-align: center;">Csua Library card generator</h1>
         <div class="btns" style="display: flex;gap:10px;">
             <a href="./studentsForm.php"  class="btnType1 buttons">Add Student</a>
            <form action="./generate.php" class="printBtn">

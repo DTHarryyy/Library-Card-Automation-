@@ -43,22 +43,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/general.css">
+    <link rel="stylesheet" href="./style/loginform.css">
     <title>Cagayan State University Aparri Campus Library</title>
 
-    <style>
-        body { font-family: Arial, sans-serif; }
-        .login-container {
-            width: 300px; margin: 80px auto; padding: 20px;
-            border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 0 5px #aaa;
-        }
-        input { width: 100%; padding: 10px; margin: 8px 0; }
-        button { width: 100%; padding: 10px; background: #4CAF50; color: white; border: none; }
-        .error { color: red; margin-bottom: 10px; }
-    </style>
 </head>
 <body>
     <div class="login-container">
-    <h2>Login</h2>
+    <h1>Login</h1>
     <?php if ($message): ?>
         <p class="error"><?= $message ?></p>
     <?php endif; ?>
