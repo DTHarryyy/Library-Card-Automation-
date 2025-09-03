@@ -48,11 +48,15 @@
               </td>
 
               <td class="actions" data-label="Actions" style="text-align:center;">
-                <button class="action-btn edit-btn" aria-label="Edit <?= $student['full_name']?>">Edit</button>
+                <button 
+                  class="action-btn edit-btn"
+                  aria-label="Edit <?= $student['full_name']?>"
+                  onclick="return confirm('Ayusin ko pa tu, Hindi Pa sya gumagana BWHAHHWHHAHWHA?')"
+                  >Edit</button>
                 <button 
                   class="action-btn delete-btn"
                   aria-label="Delete <?= $student['full_name']?>"
-                  onclick="removeStudent(<?= $student['student_id_number']?>)"
+                  onclick="return confirm('Ayusin ko pa tu, Hindi Pa sya gumagana BWHAHHWHHAHWHA?')"
                 >
                   Delete
                 </button>

@@ -21,6 +21,7 @@
   padding: 25px 30px;
   border-radius: 20px 20px 0 0;
   box-sizing: border-box;
+  display: block;
 }
 
 .table-header h1 {
@@ -138,7 +139,7 @@ tbody tr:hover {
   transform: translateY(-1px);
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .table-container {
     overflow-x: hidden;
   }
@@ -148,9 +149,7 @@ tbody tr:hover {
     width: 100%;
   }
 
-  thead {
-    display: none; /* hide headers */
-  }
+  
 
   tbody tr {
     margin-bottom: 15px;
@@ -162,7 +161,7 @@ tbody tr:hover {
   }
 
   tbody td {
-    display: block;          /* stack instead of flex */
+    display: block;         
     padding: 8px 6px;
     border: none;
     border-bottom: 1px solid #f1f5f9;
@@ -176,7 +175,7 @@ tbody tr:hover {
 
   tbody td::before {
     content: attr(data-label);
-    display: block;          /* label on its own line */
+    display: block;          
     font-weight: 600;
     color: #475569;
     margin-bottom: 4px;
@@ -184,14 +183,11 @@ tbody tr:hover {
     text-transform: capitalize;
   }
 
-  /* Ensure no overflow */
   tbody td > * {
     width: 100%;
     display: block;
     overflow-wrap: anywhere;
   }
-
-  /* Actions look tidy */
   .actions {
     display: flex;
     gap: 8px;
@@ -204,4 +200,4 @@ tbody tr:hover {
     flex: 1 1 48%;
     text-align: center;
   }
-}
+} */

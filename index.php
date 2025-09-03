@@ -21,9 +21,7 @@
 <body>
     <header id="homeHeader">
         <div class="logo">
-           <img src="../library/assets/images/csulogo.png" alt=""> 
-           <img src="../library/assets/images/csulogo.png" alt=""> 
-           <img src="../library/assets/images/csulogo.png" alt=""> 
+           <img src="./assets/images/csulogo.png" alt=""> 
         </div>
         <h1>Cagayan State University Library</h1>
         <div class="btns" style="display: flex;gap:10px;">
@@ -39,12 +37,5 @@
         ?>  
     </section>
 
-    <script>
-        function removeStudent(student_id){
-            return confirm('Are you sure you want to remove this student?')
-
-
-        }
-    </script>
 </body>
 </html>

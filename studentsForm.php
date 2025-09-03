@@ -9,13 +9,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/general.css">
     <link rel="stylesheet" href="./style/form.css">
+    
+    <!--Remix Icon Cdn link (For ICONS)-->
+    <link
+        href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+        rel="stylesheet"
+    />
     <title>CSUA-Lib Student Form</title>
 </head>
 <body>
     <section id="formSection">
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST" id="form">
-            <h1>Student Information</h1>
-            <p class="light-text" style="margin-bottom: 30px;">
+            <div style="display: flex; margin: 0 0 10px 0">
+                <a href="./index.php" style="text-decoration: none;color: #191919;">
+                    <i class="ri-arrow-left-line" style="font-size: 1.3rem;"></i>
+                </a>
+                <h1 style="flex: 1; text-align:center;">Student Information</h1>
+            </div>
+            <p class="light-text" style="text-align: center;margin: 0 0 30px 20px;  ">
                 Please fill in the required details below.
             </p>
 
