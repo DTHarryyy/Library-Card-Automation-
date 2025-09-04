@@ -13,9 +13,7 @@
             $student_id_number = htmlspecialchars(trim($_POST['student_id_number']));
             $address = htmlspecialchars(trim($_POST['address']));
             $department = htmlspecialchars(trim($_POST['department']));
-
-            // Example: current logged-in user (hardcoded for demo, replace with session user ID)
-            $added_by_user_id = 1;
+            $added_by_user_id = $_SESSION['user_id'];
 
             // Validate required fields
             if (!empty($full_name) && !empty($student_id_number) && !empty($department)) {

@@ -50,12 +50,13 @@
               </td>
 
               <td class="actions" data-label="Actions" style="text-align:center;">
-                <button 
+                <a 
+                  href="./studentsForm.php?student=<?=$student['id']?>"
                   class="action-btn edit-btn"
                   aria-label="Edit <?= $student['full_name']?>"
-                  onclick="return confirm('Ayusin ko pa tu, Hindi Pa sya gumagana BWHAHHWHHAHWHA?')"
-                  >Edit</button>
-                <button 
+                  style="text-decoration: none;"
+                  >Edit</a>
+                <button
                   class="action-btn delete-btn"
                   aria-label="Delete <?= $student['full_name']?>"
                   onclick="return confirm('Ayusin ko pa tu, Hindi Pa sya gumagana BWHAHHWHHAHWHA?')"
