@@ -29,8 +29,6 @@
             $current_student_id = $student['student_id_number'];
             $current_department = $student['department'];
         }
-
-
         
     }
 ?>

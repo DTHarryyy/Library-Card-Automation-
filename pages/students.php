@@ -23,7 +23,7 @@
           <td>No users found!</td>
         <?php endif?>
         <?php  foreach($students as $student): ?>
-          <tr>
+          <tr id=<?='student-row-' . $student['id']?>>
             <td class="student-id" data-label="Student ID">
                 <?= $student['student_id_number']?>
               </td>
@@ -59,7 +59,7 @@
                 <button
                   class="action-btn delete-btn"
                   aria-label="Delete <?= $student['full_name']?>"
-                  onclick="return confirm('Ayusin ko pa tu, Hindi Pa sya gumagana BWHAHHWHHAHWHA?')"
+                  onclick="deleteStudent(<?=$student['id']?>)"
                 >
                   Delete
                 </button>

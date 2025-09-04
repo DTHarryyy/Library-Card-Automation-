@@ -36,6 +36,6 @@
             include('./pages/students.php');
         ?>  
     </section>
-
+    <script src="./assets/javascript/delete_user_fucntion.js"></script>
 </body>
 </html>
