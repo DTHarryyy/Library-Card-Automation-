@@ -9,33 +9,27 @@ use Picqer\Barcode\BarcodeGeneratorHTML;
 
 include("./backend/database_information.php");
 function encodeToCode128A($input) {
-    // Code128A uses ASCII 0–95 (uppercase, digits, symbols, control chars)
-    // Start Code128A = ASCII 203 (Ì in some fonts)
-    // Stop Code = ASCII 206 (Î in some fonts)
-    // We need: Start Code + Encoded Data + Checksum + Stop Code
+    $startCode = chr(203); // Start A
+    $stopCode  = chr(206); // Stop
 
-    $startCode = chr(203); // Start Code A
-    $stopCode  = chr(206); // Stop Code
-
-    // Calculate checksum
-    // checksum = (startValue + Σ( value(character) * position )) mod 103
-    // startValue for Code128A = 103
+    // Start A has value 103
     $checksum = 103;
+
     $chars = str_split($input);
     foreach ($chars as $i => $char) {
-        $ascii = ord($char);
-
-        // For Code128A, only ASCII 0–95 are allowed
-        if ($ascii < 0 || $ascii > 95) {
-            throw new Exception("Character '{$char}' not valid in Code128A");
-        }
-
-        $checksum += ($ascii * ($i + 1));
+        $digitValue = 16 + (int)$char; // Map 0-9 → 16-25
+        $checksum += $digitValue * ($i + 1);
     }
     $checksum = $checksum % 103;
 
-    // Convert checksum into a character (basic mapping)
-    $checksumChar = chr($checksum);
+    // Convert checksum value into a character
+    // Fonts usually map 0–95 → ASCII 32–127, and 96–102 into special codes.
+    if ($checksum < 95) {
+        $checksumChar = chr($checksum + 32);
+    } else {
+        // Fallback handling for values 95–102
+        $checksumChar = chr($checksum + 100);
+    }
 
     return $startCode . $input . $checksumChar . $stopCode;
 }
@@ -141,7 +135,7 @@ foreach ($students as $student) {
                     [
                         'alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER,
                         'lineHeight' => 1.0
-                        ]
+                    ]
                     );
                     $cell->addText(
                         $cellData['student_id_number'],
@@ -149,7 +143,7 @@ foreach ($students as $student) {
                             'size' => 5,
                             'name' => 'Trebuchet MS' // make sure this is the actual font name installed
                         ],
-                    [
+                        [
                         'alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER,
                         'lineHeight' => 1.0
                         ]
