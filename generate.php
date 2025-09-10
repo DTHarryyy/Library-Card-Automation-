@@ -1,4 +1,5 @@
 <?php
+session_start();
 require './autoloader.php';
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\IOFactory;
